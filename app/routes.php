@@ -1,6 +1,10 @@
 <?php
 
 Route::get('/', function () {
-	$users = DB::table('users')->where('username', '!=', 'yamilah')->get();
-	return $users;
+	User::create([
+		'username' => 'AnotherUser',
+		'password' => Hash::make('password'),
+	]);
+
+	return User::all();
 });
