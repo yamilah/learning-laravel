@@ -1,10 +1,9 @@
 <?php
 
 Route::get('/', function () {
-	User::create([
-		'username' => 'AnotherUser',
-		'password' => Hash::make('password'),
-	]);
+	$user = User::find(2);
+	$user->username = 'UpdatedName';
+	$user->save();
 
 	return User::all();
 });
