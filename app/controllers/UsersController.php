@@ -2,8 +2,8 @@
 
 class UsersController extends BaseController {
 	public function index() {
-			$users = User::all();
-			return View::make('users.index', ['users' => $users]);
+		$users = User::all();
+		return View::make('users.index', ['users' => $users]);
 	}
 
 	public function show($username) {
@@ -16,6 +16,10 @@ class UsersController extends BaseController {
 	}
 
 	public function store() {
+		if (! User::isValid(Input::all())) {
+			return Redirect::back()->withInput()->withErrors(User::$errors);
+		}
+
 		$user = new User;
 		$user->username = Input::get('username');
 		$user->password = Hash::make(Input::get('password'));
