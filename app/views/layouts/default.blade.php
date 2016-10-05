@@ -2,9 +2,9 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Laravel Exercise</title>
+		<title>Laravel 4.2 Exercise</title>
 	</head>
 	<body>
-		<h1>About Page</h1>
+		@yield('content')
 	</body>
 </html>
