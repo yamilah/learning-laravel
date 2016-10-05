@@ -23,12 +23,16 @@ class UsersController extends BaseController {
 	}
 
 	public function store() {
-		$input = Input::all();
 
-		if (! $this->user->fill($input)->isValid()) {
-			return Redirect::back()->withInput()->withErrors($this->user->errors);
+		$validator = Validator::make(Input::all(), User::$rules);
+
+		if (!$validator->passes()) {
+			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
+		$this->user->email = Input::get('email');
+		$this->user->username = Input::get('username');
+		$this->user->password = Hash::make(Input::get('password'));
 		$this->user->save();
 
 		return Redirect::route('users.index');
