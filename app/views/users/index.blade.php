@@ -4,14 +4,14 @@
 
 	<h1>All users.</h1>
 
-	@if (count($users) < 1)
-		<p>
-			there are no users
-		</p>
-	@endif
+	@if ($users->count())
 
-	@foreach ($users as $user)
-		<li>{{ link_to("/users/{$user->username}", $user->username) }}</li>
-	@endforeach
+		@foreach ($users as $user)
+			<li>{{ link_to("/users/{$user->username}", $user->username) }}</li>
+		@endforeach
+
+	@else
+		<p>There are no users to display.</p>
+	@endif
 
 @stop
