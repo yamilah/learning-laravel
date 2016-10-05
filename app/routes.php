@@ -1,9 +1,5 @@
 <?php
 
 Route::get('/', function () {
-	$user = User::find(2);
-	$user->username = 'UpdatedName';
-	$user->save();
-
-	return User::all();
+	return User::orderBy('username', 'asc')->take(2)->get();
 });
