@@ -1,5 +1,11 @@
 <?php
 
 Route::get('/', function () {
-	return User::orderBy('username', 'asc')->take(2)->get();
+	$users = User::all();
+	return View::make('users/index', ['users' => $users]);
+});
+
+Route::get('users/{username}', function($username) {
+	$user = User::whereUsername($username)->first();
+	return View::make('users/show', ['user' => $user]);
 });
