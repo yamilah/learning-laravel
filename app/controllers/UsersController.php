@@ -10,4 +10,8 @@ class UsersController extends BaseController {
 		$user = User::whereUsername($username)->first();
 		return View::make('users/show', ['user' => $user]);
 	}
+
+	public function create() {
+		return 'show form to create user';
+	}
 }
